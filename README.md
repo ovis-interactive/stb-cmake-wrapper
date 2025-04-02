@@ -1,24 +1,34 @@
 # stb cmake wrapper
+
 The popular [stb libraries](https://github.com/nothings/stb) are a set of header-only libraries which are very easy to just copy and paste into existing codebases.
 However, if you have already set up a cmake based project is sometimes convenient to have proper cmake targets for the individual libraries.
-This wrapper creates cmake targets for each library that takes care of adding the actual implementation for the libraries, i.e., adding the proper `STD_(...)_IMPLEMENTATION` define.
+This wrapper creates cmake targets for each library that takes care of adding the actual implementation for the libraries, i.e., adding the proper `STB_(...)_IMPLEMENTATION` define.
 
-After adding this wrapper to you project you have access to the `std::LIBRARY_NAME` targets.
+## Fork
+
+This is a fork to update the version of `stb`, fix some minor documentation issues, and update the cmake min target in the era of CMake 4.0 deprecating older versions.
+
+## Consuming this library in cmake
+
+After adding this wrapper to your project you have access to the `stb::LIBRARY_NAME` targets.
 For example, to use the image library you simply add this to your cmake script:
+
 ```cmake
-target_link_libraries(YOUR_TARGET PUBLIC std::image)
+target_link_libraries(YOUR_TARGET PUBLIC stb::image)
 ```
 
-### Adding the wrapper to your project
-1. Via [CPM](https://github.com/cpm-cmake/CPM.cmake): simply add `CPMAddPackage("gh:ovis-games/stb-cmake-wrapper@0.1")` to your cmake script.
-2. Via git submodules: add a submodule to your repository and add `add_subdirectory(path/to/std-cmake-wrapper)`. Alternatively you can also copy and paste the conent of this repository instead of using git submodules.
+## Adding the wrapper to your project
 
-### Library support
+1. Via [CPM](https://github.com/cpm-cmake/CPM.cmake): simply add `CPMAddPackage("gh:vikhik/stb-cmake-wrapper@0.2")` to your cmake script.
+2. Via git submodules: add a submodule to your repository and add `add_subdirectory(path/to/stb-cmake-wrapper)`.
+3. Alternatively you can also copy and paste the contents of this repository.
+
+## Library support
+
 This list gives an overview of the currently supported libraries.
 The libraries currently not supported by the wrapper are the ones needing additional defines to work (textedit, voxel_render, tilemap_editor, connected_components).
-In addition, the vorbis library is currently not supported as it is a .c file but somehow acts as a header and I currently do not want look into it how it actually works.
 
-- [ ] [stb::vorbis](https://github.com/nothings/stb/blob/master/stb_vorbis.c)
+- [x] [stb::vorbis](https://github.com/nothings/stb/blob/master/stb_vorbis.c)
 - [x] [stb::hexwave](https://github.com/nothings/stb/blob/master/stb_hexwave.h)
 - [x] [stb::image](https://github.com/nothings/stb/blob/master/stb_image.h)
 - [x] [stb::truetype](https://github.com/nothings/stb/blob/master/stb_truetype.h)
@@ -40,5 +50,6 @@ In addition, the vorbis library is currently not supported as it is a .c file bu
 - [x] [stb::leakcheck](https://github.com/nothings/stb/blob/master/stb_leakcheck.h)
 - [x] [stb::include](https://github.com/nothings/stb/blob/master/stb_include.h)
 
-### License
+## License
+
 [MIT](LICENSE)
